@@ -109,8 +109,7 @@ public class Unit
                 return;
             }
 
-        }
-        
+        }       
 
     }
 
@@ -129,5 +128,24 @@ public class Unit
         Discard.AddRange(Hand);
         Hand.Clear();
         OnHandChanged?.Invoke(this);
+    }
+
+    public void UseFirstCardAvailable(Unit other)
+    {
+        var nextAttack = GetNextCardAvailable(); 
+        nextAttack?.TryUse(this, other);
+    }
+
+    public Card GetNextCardAvailable()
+    {
+        foreach (Card card in Cards)
+        {
+            if (card.Cost <= CurrentResources)
+            {
+                return card;
+            }
+        }
+
+        return null;
     }
 }

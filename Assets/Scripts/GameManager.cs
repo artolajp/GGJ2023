@@ -34,15 +34,17 @@ public class GameManager : MonoBehaviour
         });
         _enemies = new List<Unit>();
         var _enemy = new Unit();        
-        InitPlayer(_enemy, 10, 3, "Enemy", "{{   }}\n{{----}}\n{{   }}", new List<Card>()
+        InitPlayer(_enemy, 10, 2, "Enemy", "{{   }}\n{{----}}\n{{   }}", new List<Card>()
         {
-            new AttackCard("Ataque basico", "ata", 1,1)
+            new AttackCard("Ataque 5", "ata", 5,3),
+            new AttackCard("Ataque 2", "ata", 2,1)
         });
         _enemies.Add(_enemy);
         _enemy = new Unit();
-        InitPlayer(_enemy, 10, 3, "Enemy", "{{   }}\n{{----}}\n{{   }}", new List<Card>()
+        InitPlayer(_enemy, 10, 2, "Enemy", "{{   }}\n{{----}}\n{{   }}", new List<Card>()
         {
-            new AttackCard("Ataque basico", "ata", 1,1)
+            new AttackCard("Ataque 8", "ata", 8,4),
+            new AttackCard("Ataque 1", "ata", 1,1)
         });
         _enemies.Add(_enemy);
 
@@ -66,7 +68,7 @@ public class GameManager : MonoBehaviour
 
         for (int i = 0; i < _enemies.Count; i++)
         {
-            enemiesUI[i].Init(_enemies[i], SelectUnit);
+            enemiesUI[i].Init(_enemies[i], SelectUnit, true);
             _enemies[i].OnUnitDead += OnUnitDead;
         }
     }
@@ -137,6 +139,13 @@ public class GameManager : MonoBehaviour
 
     public void EnemyTurn()
     {
+        foreach (Unit enemy in _enemies)
+        {
+            if(enemy.IsDead) continue;
+            enemy.UseFirstCardAvailable(_player1);
+            enemy.CurrentResources += 2;
+        }
+        
         StartTurn();
     }
 
@@ -174,7 +183,8 @@ public class GameManager : MonoBehaviour
         if (unit == _player1)
         {
             Debug.Log($"Derrota!");
-
         }
     }
+    
+    
 }

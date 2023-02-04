@@ -11,18 +11,20 @@ public class UnitUI : MonoBehaviour
     [SerializeField] private TMP_Text playerNameText;
     [SerializeField] private TMP_Text playerHealthText;
     [SerializeField] private TMP_Text playerResourcesText;
+    [SerializeField] private TMP_Text nextCardText;
 
     [SerializeField] private Button button;
 
     private Unit _unit;
     private GameManager _gameManager;
+    private bool _isEnemy;
 
     public Action<Unit> OnUnitClick;
 
-    public void Init(Unit unit, Action<Unit> onUnitClick)
+    public void Init(Unit unit, Action<Unit> onUnitClick, bool isEnemy = false)
     {
         _unit = unit;
-
+        _isEnemy = isEnemy;
         Refresh(unit);
         unit.OnUnitChanged += Refresh;
         unit.OnUnitDead += OnUnitDead;
@@ -37,6 +39,7 @@ public class UnitUI : MonoBehaviour
         playerHealthText.text = unit.Health.ToString();
         playerResourcesText.text = unit.CurrentResources.ToString();
         gameObject.SetActive(true);
+        nextCardText.text = _isEnemy ? unit.GetNextCardAvailable()?.Name : "";
     }
     
     private void OnUnitDead(Unit unit)
