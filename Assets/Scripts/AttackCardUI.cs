@@ -10,18 +10,19 @@ public class AttackCardUI : MonoBehaviour
     [SerializeField] private TMP_Text cardName;
     [SerializeField] private TMP_Text cardDescription;
     [SerializeField] private TMP_Text cardPower;
+    [SerializeField] private TMP_Text cardCost;
 
     [SerializeField] private Button button;
 
     [SerializeField] private Image selectedImage;
 
     private Card _card;
-    private GameManager _gameManager;
+    private Action<Card> OnCardClick;
 
     private void Start()
     {
         button.onClick.RemoveAllListeners();
-        button.onClick.AddListener(OnCardClick);
+        button.onClick.AddListener(ClickCard);
         DeselectCard();
     }
 
@@ -30,12 +31,14 @@ public class AttackCardUI : MonoBehaviour
         cardName.text = card.Name;
         cardDescription.text = card.Description;
         cardPower.text = card.damage.ToString();
+        cardCost.text = card.Cost.ToString();
     }
 
-    public void Init( Card card, GameManager gameManager)
+    public void Init( Card card, Action<Card> onCardClick)
     {
-        _gameManager = gameManager;
         _card = card;
+        OnCardClick = onCardClick;
+
         if (card is AttackCard attackCard)
         {
             Refresh(attackCard);
@@ -45,16 +48,9 @@ public class AttackCardUI : MonoBehaviour
         _card.OnCardDeselected += DeselectCard;
     }
 
-    public void OnCardClick()
+    public void ClickCard()
     {
-        if (!_card.IsSelected)
-        {
-            _gameManager.SelectCard(_card);
-        }
-        else
-        {
-            _gameManager.DeselectCard(_card);
-        }
+        OnCardClick?.Invoke(_card);
     }
 
     public void SelectCard()

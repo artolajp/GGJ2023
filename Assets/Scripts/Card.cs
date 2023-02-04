@@ -1,14 +1,15 @@
 using System;
 
-public abstract class Card
+public class Card
 {
     public string Name;
     public string Description;
+    public int Cost;
 
     private bool isSelected;
     public bool IsSelected
     {
-        get { return isSelected; }
+        get => isSelected;
         set
         {
             isSelected = value;
@@ -26,27 +27,22 @@ public abstract class Card
     public event Action OnCardSelected;
     public event Action OnCardDeselected;
     
-    public Card(string name, string description)
+    public Card(string name, string description, int cost)
     {
         Name = name;
         Description = description;
+        Cost = cost;
     }
 
-    public abstract void Use(Unit unit, Unit other);
+    public virtual bool TryUse(Unit unit, Unit other)
+    {
+        if (Cost > unit.CurrentResources)
+        {
+            return false;
+        }
+        
+        unit.CurrentResources -= Cost;
+        return true;
+    }
     
-}
-
-public class AttackCard : Card
-{
-    public int damage;
-
-    public AttackCard(string name, string description, int damage) : base(name, description)
-    {
-        this.damage = damage;
-    }
-
-    public override void Use(Unit unit, Unit other)
-    {
-        unit.Attack(other, this);
-    }
 }
