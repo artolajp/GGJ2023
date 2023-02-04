@@ -25,6 +25,7 @@ public class UnitUI : MonoBehaviour
 
         Refresh(unit);
         unit.OnUnitChanged += Refresh;
+        unit.OnUnitDead += OnUnitDead;
         button.onClick.AddListener(OnClick);
         OnUnitClick = onUnitClick;
     }
@@ -35,6 +36,24 @@ public class UnitUI : MonoBehaviour
         playerNameText.text = unit.Name;
         playerHealthText.text = unit.Health.ToString();
         playerResourcesText.text = unit.CurrentResources.ToString();
+        gameObject.SetActive(true);
+    }
+    
+    private void OnUnitDead(Unit unit)
+    {
+        Clear();
+    }
+
+    public void Clear()
+    {        
+        gameObject.SetActive(false);
+        if (_unit != null)
+        {
+            _unit.OnUnitChanged -= Refresh;
+            _unit.OnUnitDead -= OnUnitDead;
+            _unit = null;
+        }
+        
     }
 
     private void OnClick()

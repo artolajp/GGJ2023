@@ -15,9 +15,14 @@ public class Unit
     public List<Card> Deck = new List<Card>();
     public List<Card> Hand = new List<Card>();
     public List<Card> Discard = new List<Card>();
+    private bool _isDead;
+    public bool IsDead => _isDead;
 
     public event Action<Unit> OnUnitChanged;
+    public event Action<Unit> OnUnitDead;
     public event Action<Card> OnCardUsed;
+    
+    public event Action<Unit> OnHandChanged;
 
     public int CurrentResources
     {
@@ -29,6 +34,7 @@ public class Unit
         }
     }
 
+
     public void Attack(Unit other, AttackCard card)
     {
         other.ApplyCard(this, card);
@@ -37,6 +43,11 @@ public class Unit
     public void ApplyCard(Unit other, AttackCard card)
     {
         Health -= card.damage;
+        if (Health <= 0)
+        {
+            _isDead = true;
+            OnUnitDead?.Invoke(this);
+        }
         OnUnitChanged?.Invoke(this);
     }
 
@@ -54,7 +65,7 @@ public class Unit
             Deck.Add(cardsToSuffle[randomIndex]);
             cardsToSuffle.RemoveAt(randomIndex);
         }
-        OnUnitChanged?.Invoke(this);
+        OnHandChanged?.Invoke(this);
     }
     
     public void Shuffle()
@@ -72,7 +83,7 @@ public class Unit
             cardsToShuffle.RemoveAt(randomIndex);
         }
         
-        OnUnitChanged?.Invoke(this);
+        OnHandChanged?.Invoke(this);
     }
 
     public void Draw(int cantCards)
@@ -87,6 +98,7 @@ public class Unit
                 Hand.Add(card);
                 Deck.RemoveAt(randomIndex);
                 cantCards--;
+                OnHandChanged?.Invoke(this);
             }
             else if(Discard.Count>0)
             {
@@ -98,6 +110,8 @@ public class Unit
             }
 
         }
+        
+
     }
 
     public void UseCard(Unit unit, Card card)
@@ -107,13 +121,13 @@ public class Unit
         Discard.Add(card);
         
         OnCardUsed?.Invoke(card);
-        OnUnitChanged?.Invoke(this);
-
+        OnHandChanged?.Invoke(this);
     }
 
     public void DiscardHand()
     {
         Discard.AddRange(Hand);
         Hand.Clear();
+        OnHandChanged?.Invoke(this);
     }
 }

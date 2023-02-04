@@ -46,6 +46,8 @@ public class AttackCardUI : MonoBehaviour
 
         _card.OnCardSelected += SelectCard;
         _card.OnCardDeselected += DeselectCard;
+        gameObject.SetActive(true);
+
     }
 
     public void ClickCard()
@@ -62,5 +64,18 @@ public class AttackCardUI : MonoBehaviour
     {
         selectedImage.gameObject.SetActive(false);
     }
-    
+
+    public void Clear()
+    {
+        if (_card != null)
+        {
+            _card.OnCardSelected -= SelectCard;
+            _card.OnCardDeselected -= DeselectCard;
+            _card = null;
+        }
+        
+        OnCardClick = null;
+
+        gameObject.SetActive(false);
+    }
 }
