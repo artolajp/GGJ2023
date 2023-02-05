@@ -19,4 +19,9 @@ public class AttackCard : Card
         unit.Attack(other, this);
         return true;
     }
+
+    public override string Text
+    {
+        get => damage.ToString();
+    }
 }

@@ -9,37 +9,47 @@ public class GameManager : MonoBehaviour
 {
     private Unit _player1 = new Unit();
 
-    [SerializeField] private UnitUI player1UI;
+    [SerializeField] private PlayerUI player1UI;
     [SerializeField] private List<UnitUI> enemiesUI;
     
     [SerializeField] private List<AttackCardUI> cardUI;
 
     [SerializeField] private TMP_Text deckCount;
     [SerializeField] private TMP_Text discardCount;
+    [SerializeField] private TMP_Text dayText;
 
     [SerializeField] private Button endTurnButton;
     
     private Card _selectedCard;
 
     [SerializeField] private LevelData _levelData;
+    [SerializeField] private StageData _stageData;
     [SerializeField] private UnitData _playerData;
 
+    [SerializeField] private GameObject _panelWin;
+    [SerializeField] private GameObject _panelLoss;
+
     private Level _currentLevel;
+    private int _currentLevelIndex;
+    private int _currentDay;
 
     private void Start()
     {
         _player1 = _playerData.GetUnit();
         InitPlayer(_player1);
-
-        _currentLevel = _levelData.GetLevel();
-        player1UI.Init(_player1, SelectUnit);
+        
         _player1.OnHandChanged += RefreshHand;
         _player1.OnUnitDead += OnUnitDead;
-        
-        RefreshEnemies();
-
+        player1UI.Init(_player1, SelectUnit);
         endTurnButton.onClick.AddListener(EndTurn);
-        
+        _currentLevelIndex = 0;
+        StartLevel();
+    }
+
+    private void StartLevel()
+    {
+        _currentLevel = _stageData.levels[_currentLevelIndex].GetLevel();
+        RefreshEnemies();
         StartTurn();
     }
 
@@ -131,6 +141,8 @@ public class GameManager : MonoBehaviour
     {
         _player1.CurrentResources = _player1.Resources;
         _player1.Draw(3);
+        _currentDay++;
+        dayText.text = _currentDay.ToString();
     }
     
     public void RefreshHand(Unit unit){
@@ -152,17 +164,33 @@ public class GameManager : MonoBehaviour
 
     public void OnUnitDead(Unit unit)
     {
-        Debug.Log($"{unit.Name} dead");
         if (_currentLevel.Enemies.All(enemy => enemy.IsDead))
         {
-            Debug.Log($"En hora buena jugador 1");
+            _currentLevelIndex++;
+            if (_currentLevelIndex < _stageData.levels.Count)
+            {
+                StartLevel();
+            }
+            else
+            {
+                EndGame();
+            }
         }
 
         if (unit == _player1)
         {
-            Debug.Log($"Derrota!");
+            GameOver();
         }
     }
-    
-    
+
+    private void EndGame()
+    {
+        _panelWin.SetActive(true);
+    }
+
+    private void GameOver()
+    {
+        _panelLoss.SetActive(true);
+
+    }
 }

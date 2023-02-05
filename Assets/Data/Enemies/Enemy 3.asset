@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7ce82499a5994e40ad36f73980487dcf, type: 3}
-  m_Name: Enemy 1
+  m_Name: Enemy 3
   m_EditorClassIdentifier: 
-  Name: mmm que borre?
-  Health: 10
+  Name: Actualizar COSO
+  Health: 5
   Resources: 2
-  ASCII: <FileNotFound>
+  ASCII: Updating...
   HandSize: 1
   Cards:
-  - {fileID: 11400000, guid: c10041c98ae18284e933451c4b16b995, type: 2}
   - {fileID: 11400000, guid: 3f5c142ad20114a4bbe7f5e7a807f199, type: 2}
+  - {fileID: 11400000, guid: 978bdb27add51424cb056b4285e0cbc0, type: 2}

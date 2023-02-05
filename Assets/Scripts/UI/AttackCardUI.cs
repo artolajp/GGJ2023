@@ -34,6 +34,7 @@ public class AttackCardUI : MonoBehaviour
         cardPower.text = card.damage.ToString();
         cardCost.text = card.Cost.ToString();
         cardCost.color = _resources < card.Cost ? Color.red : Color.white;
+        cardPower.color = card.Cost > 0 ? Color.white : Color.green;
     }
 
     public void Init( Card card, int resources,  Action<Card> onCardClick)
@@ -78,7 +79,7 @@ public class AttackCardUI : MonoBehaviour
         }
         
         OnCardClick = null;
-
+        DeselectCard();
         gameObject.SetActive(false);
     }
 }

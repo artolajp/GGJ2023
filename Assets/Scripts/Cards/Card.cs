@@ -24,6 +24,11 @@ public class Card
         }
     }
 
+    public virtual string Text
+    {
+        get => "";
+    }
+
     public event Action OnCardSelected;
     public event Action OnCardDeselected;
     

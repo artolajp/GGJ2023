@@ -9,10 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40d13ecb412c897489b79bae2fbfd34e, type: 3}
-  m_Name: Extras 2
+  m_Script: {fileID: 11500000, guid: 6b9b5a72a46b99c46b539637302b6afa, type: 3}
+  m_Name: Stage
   m_EditorClassIdentifier: 
-  Name: Salir a caminar
-  Description: 
-  Cost: 2
-  Power: -4
+  levels:
+  - {fileID: 11400000, guid: 4747685d564fd4241b50370ba2fe085b, type: 2}
+  - {fileID: 11400000, guid: 629befcef7a162d4e87b57ea1a8116a2, type: 2}

@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7ce82499a5994e40ad36f73980487dcf, type: 3}
-  m_Name: Enemy 1
+  m_Name: Enemy 5
   m_EditorClassIdentifier: 
-  Name: mmm que borre?
-  Health: 10
-  Resources: 2
-  ASCII: <FileNotFound>
+  Name: Ayduar a tu vecino
+  Health: 18
+  Resources: 3
+  ASCII: '[telmex]: $#"$&#$  "##%#$" #$& "&$#"'
   HandSize: 1
   Cards:
-  - {fileID: 11400000, guid: c10041c98ae18284e933451c4b16b995, type: 2}
+  - {fileID: 11400000, guid: bb7c193401280e64a961aeb2eb90f0da, type: 2}
   - {fileID: 11400000, guid: 3f5c142ad20114a4bbe7f5e7a807f199, type: 2}

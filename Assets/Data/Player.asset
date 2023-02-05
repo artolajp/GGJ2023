@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: You
   Health: 100
-  Resources: 3
+  Resources: 8
   ASCII: '[root]'
-  HandSize: 3
+  HandSize: 4
   Cards:
   - {fileID: 11400000, guid: a5f9cc3180ea0bc4bb1e759e12ccd1ce, type: 2}
   - {fileID: 11400000, guid: 4e90d2c01ec6cf44095167edec3236b1, type: 2}
@@ -27,3 +27,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 439c1476c77ede4408d7b4f1c785687a, type: 2}
   - {fileID: 11400000, guid: 50398416934e8b542b2e593993e13c0c, type: 2}
   - {fileID: 11400000, guid: 35212abd034f8aa44ba2a3a8e8108fcd, type: 2}
+  - {fileID: 11400000, guid: 94491d1facb1ea0479968daa783e9264, type: 2}
+  - {fileID: 11400000, guid: ec3e84921d011fd41be892f2c0e92b3a, type: 2}
+  - {fileID: 11400000, guid: 35212abd034f8aa44ba2a3a8e8108fcd, type: 2}
+  - {fileID: 11400000, guid: 35212abd034f8aa44ba2a3a8e8108fcd, type: 2}
+  - {fileID: 11400000, guid: a5f9cc3180ea0bc4bb1e759e12ccd1ce, type: 2}
+  - {fileID: 11400000, guid: 4e90d2c01ec6cf44095167edec3236b1, type: 2}
+  - {fileID: 11400000, guid: 318fb3c4c891a0b41881144d071bfd40, type: 2}

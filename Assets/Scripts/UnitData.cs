@@ -16,6 +16,7 @@ public class UnitData : ScriptableObject
     {
         var unit = new Unit();
         unit.Health = Health;
+        unit.CurrentHealth = Health;
         unit.Resources = Resources;
         unit.CurrentResources = Resources;
         unit.Name = Name;

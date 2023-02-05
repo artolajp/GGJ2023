@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40d13ecb412c897489b79bae2fbfd34e, type: 3}
   m_Name: Hola Mundo
   m_EditorClassIdentifier: 
-  Name: Basico
+  Name: Volver a las bases
   Description: Hola Mundo!
-  Cost: 1
-  Power: 1
+  Cost: 3
+  Power: -2

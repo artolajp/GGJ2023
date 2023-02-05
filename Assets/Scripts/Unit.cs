@@ -6,6 +6,7 @@ public class Unit
 {
     public string Name;
     public int Health;
+    public int CurrentHealth;
     public int Resources;
     private int currentResources;
     public string ASCII;
@@ -42,8 +43,8 @@ public class Unit
 
     public void ApplyCard(Unit other, AttackCard card)
     {
-        Health -= card.damage;
-        if (Health <= 0)
+        CurrentHealth -= card.damage;
+        if (CurrentHealth <= 0)
         {
             _isDead = true;
             OnUnitDead?.Invoke(this);
@@ -53,17 +54,17 @@ public class Unit
 
     public void ShuffleAll()
     {
-        var cardsToSuffle = new List<Card>(Cards);
+        var cardsToShuffle = new List<Card>(Cards);
         Discard.Clear();
         Deck.Clear();
         Hand.Clear();
 
-        int count = cardsToSuffle.Count;
+        int count = cardsToShuffle.Count;
         for (int i = 0; i < count; i++)
         {
             int randomIndex = Random.Range(0,count - i);
-            Deck.Add(cardsToSuffle[randomIndex]);
-            cardsToSuffle.RemoveAt(randomIndex);
+            Deck.Add(cardsToShuffle[randomIndex]);
+            cardsToShuffle.RemoveAt(randomIndex);
         }
         OnHandChanged?.Invoke(this);
     }
