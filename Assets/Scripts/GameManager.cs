@@ -8,7 +8,6 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     private Unit _player1 = new Unit();
-    private List<Unit> _enemies;
 
     [SerializeField] private UnitUI player1UI;
     [SerializeField] private List<UnitUI> enemiesUI;
@@ -22,32 +21,17 @@ public class GameManager : MonoBehaviour
     
     private Card _selectedCard;
 
+    [SerializeField] private LevelData _levelData;
+    [SerializeField] private UnitData _playerData;
+
+    private Level _currentLevel;
 
     private void Start()
     {
-        InitPlayer(_player1, 10, 3, "You", "[[[[   ]]]]\n[[[[><><]]]]\n[[[[   ]]]]", new List<Card>()
-        {
-            new AttackCard("Ataque basico", "ata", 3,1),
-            new AttackCard("Super Ataque", "ataKKK", 7,2),
-            new AttackCard("Ataque basico", "ata", 3,1),
-            new AttackCard("Super Ataque MAXXXIMO", "aaaaaaaaaaaaaaaaaaaa", 10,3)
-        });
-        _enemies = new List<Unit>();
-        var _enemy = new Unit();        
-        InitPlayer(_enemy, 10, 2, "Enemy", "{{   }}\n{{----}}\n{{   }}", new List<Card>()
-        {
-            new AttackCard("Ataque 5", "ata", 5,3),
-            new AttackCard("Ataque 2", "ata", 2,1)
-        });
-        _enemies.Add(_enemy);
-        _enemy = new Unit();
-        InitPlayer(_enemy, 10, 2, "Enemy", "{{   }}\n{{----}}\n{{   }}", new List<Card>()
-        {
-            new AttackCard("Ataque 8", "ata", 8,4),
-            new AttackCard("Ataque 1", "ata", 1,1)
-        });
-        _enemies.Add(_enemy);
+        _player1 = _playerData.GetUnit();
+        InitPlayer(_player1);
 
+        _currentLevel = _levelData.GetLevel();
         player1UI.Init(_player1, SelectUnit);
         _player1.OnHandChanged += RefreshHand;
         _player1.OnUnitDead += OnUnitDead;
@@ -66,21 +50,15 @@ public class GameManager : MonoBehaviour
             unitUI.Clear();
         }
 
-        for (int i = 0; i < _enemies.Count; i++)
+        for (int i = 0; i < _currentLevel.Enemies.Count; i++)
         {
-            enemiesUI[i].Init(_enemies[i], SelectUnit, true);
-            _enemies[i].OnUnitDead += OnUnitDead;
+            enemiesUI[i].Init(_currentLevel.Enemies[i], SelectUnit, true);
+            _currentLevel.Enemies[i].OnUnitDead += OnUnitDead;
         }
     }
 
-    private void InitPlayer(Unit unit, int startHealth, int startResource, string unitName, string ascii, List<Card> cards)
+    private void InitPlayer(Unit unit)
     {
-        unit.Health = startHealth;
-        unit.Resources = startResource;
-        unit.CurrentResources = startResource;
-        unit.Name = unitName;
-        unit.ASCII = ascii;
-        unit.Cards = cards;
         unit.ShuffleAll();
         unit.OnCardUsed += OnCardUsed;
     }
@@ -139,7 +117,7 @@ public class GameManager : MonoBehaviour
 
     public void EnemyTurn()
     {
-        foreach (Unit enemy in _enemies)
+        foreach (Unit enemy in _currentLevel.Enemies)
         {
             if(enemy.IsDead) continue;
             enemy.UseFirstCardAvailable(_player1);
@@ -161,7 +139,7 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < cardUI.Count && i< unit.Hand.Count; i++)
         {
             cardUI[i].Clear();
-            cardUI[i].Init(unit.Hand[i], OnCardClick);
+            cardUI[i].Init(unit.Hand[i], _player1.CurrentResources ,OnCardClick);
         }
         for (int i = unit.Hand.Count; i < cardUI.Count; i++)
         {
@@ -175,7 +153,7 @@ public class GameManager : MonoBehaviour
     public void OnUnitDead(Unit unit)
     {
         Debug.Log($"{unit.Name} dead");
-        if (_enemies.All(enemy => enemy.IsDead))
+        if (_currentLevel.Enemies.All(enemy => enemy.IsDead))
         {
             Debug.Log($"En hora buena jugador 1");
         }

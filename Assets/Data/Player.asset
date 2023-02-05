@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ce82499a5994e40ad36f73980487dcf, type: 3}
+  m_Name: Player
+  m_EditorClassIdentifier: 
+  Name: You
+  Health: 100
+  Resources: 3
+  ASCII: '[root]'
+  HandSize: 3
+  Cards:
+  - {fileID: 11400000, guid: a5f9cc3180ea0bc4bb1e759e12ccd1ce, type: 2}
+  - {fileID: 11400000, guid: 4e90d2c01ec6cf44095167edec3236b1, type: 2}
+  - {fileID: 11400000, guid: 318fb3c4c891a0b41881144d071bfd40, type: 2}
+  - {fileID: 11400000, guid: 50a2347b40cc7294fa10ab749a999f2e, type: 2}
+  - {fileID: 11400000, guid: fe731583376f36842844c06d9b23b683, type: 2}
+  - {fileID: 11400000, guid: d3a06ae55ba595a4a89b44f08d9a6b84, type: 2}
+  - {fileID: 11400000, guid: 439c1476c77ede4408d7b4f1c785687a, type: 2}
+  - {fileID: 11400000, guid: 50398416934e8b542b2e593993e13c0c, type: 2}
+  - {fileID: 11400000, guid: 35212abd034f8aa44ba2a3a8e8108fcd, type: 2}

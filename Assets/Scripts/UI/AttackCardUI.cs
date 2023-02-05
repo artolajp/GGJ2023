@@ -18,6 +18,7 @@ public class AttackCardUI : MonoBehaviour
 
     private Card _card;
     private Action<Card> OnCardClick;
+    private int _resources;
 
     private void Start()
     {
@@ -32,12 +33,14 @@ public class AttackCardUI : MonoBehaviour
         cardDescription.text = card.Description;
         cardPower.text = card.damage.ToString();
         cardCost.text = card.Cost.ToString();
+        cardCost.color = _resources < card.Cost ? Color.red : Color.white;
     }
 
-    public void Init( Card card, Action<Card> onCardClick)
+    public void Init( Card card, int resources,  Action<Card> onCardClick)
     {
         _card = card;
         OnCardClick = onCardClick;
+        _resources = resources;
 
         if (card is AttackCard attackCard)
         {
