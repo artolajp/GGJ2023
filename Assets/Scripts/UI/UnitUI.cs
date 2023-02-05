@@ -9,8 +9,6 @@ public class UnitUI : MonoBehaviour
 {
     [SerializeField] private TMP_Text playerASCIIText;
     [SerializeField] private TMP_Text playerNameText;
-    //[SerializeField] private TMP_Text playerHealthText;
-    //[SerializeField] private TMP_Text playerResourcesText;
     [SerializeField] private TMP_Text nextCardText;
 
     [SerializeField] private Button button;
@@ -35,10 +33,8 @@ public class UnitUI : MonoBehaviour
 
     private void Refresh(Unit unit)
     {
-        playerASCIIText.text = unit.ASCII;
+        playerASCIIText.text = "root@casihacker:~#" + unit.ASCII;
         playerNameText.text = unit.Name;
-        //playerHealthText.text = unit.CurrentHealth.ToString();
-        //playerResourcesText.text = unit.CurrentResources.ToString();
         gameObject.SetActive(true);
         nextCardText.text = _isEnemy ? unit.GetNextCardAvailable()?.Text : "";
         _slider.maxValue = unit.Health;

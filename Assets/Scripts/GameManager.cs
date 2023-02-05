@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -28,6 +29,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject _panelWin;
     [SerializeField] private GameObject _panelLoss;
+
+    [SerializeField] private UnitData _frecuentEnemy;
 
     private Level _currentLevel;
     private int _currentLevelIndex;
@@ -140,9 +143,14 @@ public class GameManager : MonoBehaviour
     public void StartTurn()
     {
         _player1.CurrentResources = _player1.Resources;
-        _player1.Draw(3);
+        _player1.Draw(_player1.HandSize);
         _currentDay++;
         dayText.text = _currentDay.ToString();
+        if(_currentLevel.Enemies.FindAll(unit => !unit.IsDead).Count<4)
+        {   
+            _currentLevel.Enemies.Add(_frecuentEnemy.GetUnit());
+        }
+        RefreshEnemies();
     }
     
     public void RefreshHand(Unit unit){

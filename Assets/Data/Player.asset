@@ -16,7 +16,7 @@ MonoBehaviour:
   Health: 100
   Resources: 8
   ASCII: '[root]'
-  HandSize: 4
+  HandSize: 5
   Cards:
   - {fileID: 11400000, guid: a5f9cc3180ea0bc4bb1e759e12ccd1ce, type: 2}
   - {fileID: 11400000, guid: 4e90d2c01ec6cf44095167edec3236b1, type: 2}
@@ -34,3 +34,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a5f9cc3180ea0bc4bb1e759e12ccd1ce, type: 2}
   - {fileID: 11400000, guid: 4e90d2c01ec6cf44095167edec3236b1, type: 2}
   - {fileID: 11400000, guid: 318fb3c4c891a0b41881144d071bfd40, type: 2}
+  - {fileID: 11400000, guid: 97533db866c73574292d3e6257dd005a, type: 2}
+  - {fileID: 11400000, guid: 97533db866c73574292d3e6257dd005a, type: 2}
+  - {fileID: 11400000, guid: 97533db866c73574292d3e6257dd005a, type: 2}

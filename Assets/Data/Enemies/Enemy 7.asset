@@ -9,12 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09d6aa29983e65c418ff132253178649, type: 3}
-  m_Name: Level 2
+  m_Script: {fileID: 11500000, guid: 7ce82499a5994e40ad36f73980487dcf, type: 3}
+  m_Name: Enemy 7
   m_EditorClassIdentifier: 
-  Background: {fileID: 0}
-  Enemies:
-  - {fileID: 11400000, guid: fcb1a48fa0576ad4ba5e3b95e8124bd6, type: 2}
-  - {fileID: 11400000, guid: 4a9f7ca0b565575438e6f80a906acce9, type: 2}
-  Rewards:
+  Name: Programar IA
+  Health: 30
+  Resources: 2
+  ASCII: '[reinciando router...]'
+  HandSize: 1
+  Cards:
   - {fileID: 11400000, guid: bb7c193401280e64a961aeb2eb90f0da, type: 2}
+  - {fileID: 11400000, guid: c10041c98ae18284e933451c4b16b995, type: 2}
+  - {fileID: 11400000, guid: 3f5c142ad20114a4bbe7f5e7a807f199, type: 2}

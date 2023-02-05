@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Level 4
   m_EditorClassIdentifier: 
   Background: {fileID: 0}
-  Enemies: []
+  Enemies:
+  - {fileID: 11400000, guid: 98247b5bdcee3644ea291c4f9521cd07, type: 2}
   Rewards:
   - {fileID: 11400000, guid: bb7c193401280e64a961aeb2eb90f0da, type: 2}

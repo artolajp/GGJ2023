@@ -43,7 +43,7 @@ public class Unit
 
     public void ApplyCard(Unit other, AttackCard card)
     {
-        CurrentHealth -= card.damage;
+        CurrentHealth = Math.Min(CurrentHealth - card.damage, Health);
         if (CurrentHealth <= 0)
         {
             _isDead = true;
