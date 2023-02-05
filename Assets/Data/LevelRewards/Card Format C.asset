@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: A la merd Todo
   Description: format C
-  Cost: 3
-  Power: 10
+  Cost: 8
+  Power: 14

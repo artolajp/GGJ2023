@@ -51,9 +51,11 @@ public class GameManager : MonoBehaviour
 
     private void StartLevel()
     {
+        if(_currentLevel!=null) _currentLevel.Enemies.Clear();
         _currentLevel = _stageData.levels[_currentLevelIndex].GetLevel();
-        RefreshEnemies();
         StartTurn();
+        RefreshEnemies();
+
     }
 
     private void RefreshEnemies()
@@ -130,6 +132,11 @@ public class GameManager : MonoBehaviour
 
     public void EnemyTurn()
     {
+        
+        /*if(_currentLevel.Enemies.FindAll(unit => !unit.IsDead).Count<3)
+        {   
+            _currentLevel.Enemies.Add(_frecuentEnemy.GetUnit());
+        }*/
         foreach (Unit enemy in _currentLevel.Enemies)
         {
             if(enemy.IsDead) continue;
@@ -146,11 +153,6 @@ public class GameManager : MonoBehaviour
         _player1.Draw(_player1.HandSize);
         _currentDay++;
         dayText.text = _currentDay.ToString();
-        if(_currentLevel.Enemies.FindAll(unit => !unit.IsDead).Count<4)
-        {   
-            _currentLevel.Enemies.Add(_frecuentEnemy.GetUnit());
-        }
-        RefreshEnemies();
     }
     
     public void RefreshHand(Unit unit){

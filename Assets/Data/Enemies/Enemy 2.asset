@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Enemy 2
   m_EditorClassIdentifier: 
   Name: Instalar COSO
-  Health: 8
+  Health: 30
   Resources: 2
   ASCII: Installing...
   HandSize: 1

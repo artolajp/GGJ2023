@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Enemy 6
   m_EditorClassIdentifier: 
   Name: No anda internet
-  Health: 6
+  Health: 10
   Resources: 3
   ASCII: '[reinciando router...]'
   HandSize: 1

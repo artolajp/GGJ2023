@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Cafecito
   Description: 
-  Cost: 1
-  Power: -4
+  Cost: -2
+  Power: 0

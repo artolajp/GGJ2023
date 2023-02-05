@@ -30,7 +30,7 @@ public class AttackCardUI : MonoBehaviour
     public void Refresh(AttackCard card)
     {
         cardName.text = card.Name;
-        cardDescription.text = card.Description;
+        cardDescription.text = "root@casihacker:~#" + card.Description;
         cardPower.text = card.damage.ToString();
         cardCost.text = card.Cost.ToString();
         cardCost.color = _resources < card.Cost ? Color.red : Color.white;

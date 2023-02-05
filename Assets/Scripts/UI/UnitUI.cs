@@ -33,7 +33,7 @@ public class UnitUI : MonoBehaviour
 
     private void Refresh(Unit unit)
     {
-        playerASCIIText.text = "root@casihacker:~#" + unit.ASCII;
+        playerASCIIText.text = unit.ASCII;
         playerNameText.text = unit.Name;
         gameObject.SetActive(true);
         nextCardText.text = _isEnemy ? unit.GetNextCardAvailable()?.Text : "";

@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Unity
   Description: Unity Open cosas
-  Cost: 1
-  Power: 3
+  Cost: 2
+  Power: 4

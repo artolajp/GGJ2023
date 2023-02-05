@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40d13ecb412c897489b79bae2fbfd34e, type: 3}
   m_Name: Moverse 3
   m_EditorClassIdentifier: 
-  Name: y si ..
+  Name: aca no estaba
   Description: cd D:/
-  Cost: 1
-  Power: 2
+  Cost: 2
+  Power: 3

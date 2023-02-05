@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Enemy 3
   m_EditorClassIdentifier: 
   Name: Actualizar COSO
-  Health: 5
+  Health: 16
   Resources: 2
   ASCII: Updating...
   HandSize: 1
